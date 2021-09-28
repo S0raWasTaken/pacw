@@ -5,8 +5,9 @@
    pacman -Rs $(pacman -Qqdt) -> pacw remove @orphans (@ will specify another operation to use)
    pacman -Rs -> pacw remove
 
-   @ usage
-
+   Macro usage
+     Using @ will specify another operation to run, so "pacw remove @orphans"
+     will first get the orphans and then remove them
 */
 use std::env;
 use std::env::temp_dir;

@@ -8,9 +8,8 @@
    @ usage
 
 */
-use uuid::Uuid;
-use std::env::temp_dir;
 use std::env;
+use std::env::temp_dir;
 use std::fs::File;
 use std::io::stdin;
 use std::io::Write;
@@ -18,6 +17,7 @@ use std::process::exit;
 use std::process::Command;
 use std::process::Stdio;
 use std::vec::Vec;
+use uuid::Uuid;
 
 fn main() {
     let mut args: Vec<String> = env::args().collect();
@@ -68,7 +68,7 @@ fn main() {
             match arg {
                 "@orphans" => {
                     final_command += " $(pacman -Qqdt)";
-                },
+                }
                 // TODO: add more macro operations (optdeps)
                 _ => {
                     println!(
@@ -118,7 +118,7 @@ fn main() {
     let file_name = format!("{}/{}.pacw-cmd", dir.to_str().unwrap(), Uuid::new_v4());
     let mut file = File::create(&file_name).unwrap();
     write!(file, "{}", final_command).unwrap();
-    
+
     let mut child = Command::new("/bin/bash")
         .arg(file_name)
         .stdin(Stdio::inherit())

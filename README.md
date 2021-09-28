@@ -40,3 +40,6 @@ pacw remove @orphans # -> same as "pacman -Rs $(pacman -Qqdt)"
 - Check package existence before calling the final command
 - Add a friendly explanation of what pacw is doing before running the final command
 - Organize code in multiple files
+- Automate compiling with Make
+- Add compiling/instalation instructions
+- Actually post a release

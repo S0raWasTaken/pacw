@@ -30,34 +30,34 @@ impl Default for Options {
 
 fn main() -> Result<(), String> {
     let mut args: Vec<String> = args().collect();
-
-    if args.is_empty() { return Err(String::from("No operation specified")) }
-
     args.remove(0);
-    match args[0].to_ascii_lowercase().as_str() {
-        "install" | "i" => install(args).map_err(|_| String::from("Operation install failed")),
-        "remove" | "r" => remove(args).map_err(|_| String::from("Operation remove failed")),
-        "optdeps" | "od" => {
-            todo!()
-        } // TODO: optional dependencies (main && macro)
-        "orphans" => {
-            let sys_orphans: Vec<String> = orphans()?
-                .iter()
-                .map(|o| {
-                    if o.is_empty() {
-                        String::from("No orphans")
-                    } else {
-                        o.to_string()
-                    }
-                })
-                .collect();
-            println!("{:?}", sys_orphans);
-            Ok(())
-        }
-        "show" | "info" => show(args).map_err(|_| String::from("Operation show failed")),
-        "search" => search(args).map_err(|_| String::from("Operation search failed")),
-        _ => {
-            Err(String::from("Operation unknown"))
+
+    if args.is_empty() {
+        Err(String::from("No operation specified"))
+    } else {
+        match args[0].to_ascii_lowercase().as_str() {
+            "install" | "i" => install(args).map_err(|_| String::from("Operation install failed")),
+            "remove" | "r" => remove(args).map_err(|_| String::from("Operation remove failed")),
+            "optdeps" | "od" => {
+                todo!()
+            } // TODO: optional dependencies (main && macro)
+            "orphans" => {
+                let sys_orphans: Vec<String> = orphans()?
+                    .iter()
+                    .map(|o| {
+                        if o.is_empty() {
+                            String::from("No orphans")
+                        } else {
+                            o.to_string()
+                        }
+                    })
+                    .collect();
+                println!("{:?}", sys_orphans);
+                Ok(())
+            }
+            "show" | "info" => show(args).map_err(|_| String::from("Operation show failed")),
+            "search" => search(args).map_err(|_| String::from("Operation search failed")),
+            _ => Err(String::from("Operation unknown")),
         }
     }
 }

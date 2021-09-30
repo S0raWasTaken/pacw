@@ -36,8 +36,8 @@ fn main() -> Result<(), String> {
         Err(String::from("No operation specified"))
     } else {
         match args[0].to_ascii_lowercase().as_str() {
-            "install" | "i" => install(args).map_err(|_| String::from("Operation install failed")),
-            "remove" | "r" => remove(args).map_err(|_| String::from("Operation remove failed")),
+            "install" | "i" => install(args),
+            "remove" | "r" => remove(args),
             "optdeps" | "od" => {
                 todo!()
             } // TODO: optional dependencies (main && macro)
@@ -55,8 +55,8 @@ fn main() -> Result<(), String> {
                 println!("{:?}", sys_orphans);
                 Ok(())
             }
-            "show" | "info" => show(args).map_err(|_| String::from("Operation show failed")),
-            "search" => search(args).map_err(|_| String::from("Operation search failed")),
+            "show" | "info" => show(args),
+            "search" => search(args),
             "version" | "--version" | "-version" => {
                 println!("PACW v{}", env!("CARGO_PKG_VERSION"));
                 Ok(())

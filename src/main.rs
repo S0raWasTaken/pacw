@@ -31,6 +31,8 @@ impl Default for Options {
 fn main() -> Result<(), String> {
     let mut args: Vec<String> = args().collect();
 
+    if args.is_empty() { return Err(String::from("No operation specified")) }
+
     args.remove(0);
     match args[0].to_ascii_lowercase().as_str() {
         "install" | "i" => install(args).map_err(|_| String::from("Operation install failed")),
@@ -55,7 +57,7 @@ fn main() -> Result<(), String> {
         "show" | "info" => show(args).map_err(|_| String::from("Operation show failed")),
         "search" => search(args).map_err(|_| String::from("Operation search failed")),
         _ => {
-            todo!()
+            Err(String::from("Operation unknown"))
         }
     }
 }

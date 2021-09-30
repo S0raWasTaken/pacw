@@ -25,12 +25,17 @@ pacw orphans # -> same as "pacman -Qqdt"
 pacw remove <package> # -> same as "pacman -Rs"
 ```
 
+#### Searching packages (not an AUR helper)
+```bash
+pacw search <package> # -> same as "pacman -Ss"
+```
+
 #### Using macros
 > Note: this feature is still in development, so there's not many things to do yet<br/>
 
 Examples:
 ```bash
-pacw remove @orphans # -> same as "pacman -Rs $(pacman -Qqdt)"
+pacw remove @orphans [additional packages] # -> same as "pacman -Rs $(pacman -Qqdt)"
 ```
 
 ## TODO:
@@ -39,7 +44,5 @@ pacw remove @orphans # -> same as "pacman -Rs $(pacman -Qqdt)"
 - Add more macro operations
 - Check package existence before calling the final command
 - Add a friendly explanation of what pacw is doing before running the final command
-- Organize code in multiple files
 - Automate compiling with Make
 - Add compiling/instalation instructions
-- Actually post a release

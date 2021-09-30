@@ -2,6 +2,28 @@
 A pacman wrapper and utility tool for simplicity and usability<br/>
 Made in rust :)
 
+## Build instructions:
+### Get rust via AUR:
+```bash
+paru -S rustup # Using an AUR helper is optional
+```
+> Alternatively you could download it from [here](https://rustup.rs/)
+### Clone this repository:
+```bash
+git clone https://github.com/S0raWasTaken/pacw.git && cd pacw
+```
+### Build the release binaries:
+```bash
+cargo build --release
+```
+
+### Install the recent built binary to a bin folder:
+> Alternatively you could place it on a random folder and update $PATH to include it
+```bash
+sudo mv target/release/pacw /usr/local/bin/pacw
+sudo chmod +x /usr/local/bin/pacw
+```
+
 ## Usage:
 
 > [] OPTIONAL, <> REQUIRED

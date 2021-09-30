@@ -4,10 +4,10 @@ Made in rust :)
 
 ## Build instructions:
 ### Get rust via AUR:
+> Alternatively you could download it from [here](https://rustup.rs/)
 ```bash
 paru -S rustup # Using an AUR helper is optional
 ```
-> Alternatively you could download it from [here](https://rustup.rs/)
 ### Clone this repository:
 ```bash
 git clone https://github.com/S0raWasTaken/pacw.git && cd pacw

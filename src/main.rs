@@ -57,6 +57,10 @@ fn main() -> Result<(), String> {
             }
             "show" | "info" => show(args).map_err(|_| String::from("Operation show failed")),
             "search" => search(args).map_err(|_| String::from("Operation search failed")),
+            "version" | "--version" | "-version" => {
+                println!("PACW v{}", env!("CARGO_PKG_VERSION"));
+                Ok(())
+            },
             _ => Err(String::from("Operation unknown")),
         }
     }

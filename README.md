@@ -59,12 +59,13 @@ Examples:
 ```bash
 pacw remove @orphans [additional packages] # -> same as "pacman -Rs $(pacman -Qqdt)"
 ```
+```bash
+pacw install @optdeps [packages] # -> Will install packages with its optional dependencies
+```
 
 ## TODO:
 - Add support to doas (sudo alternative)
-- Add more operations (like optional deps)
-- Add more macro operations
+- Merge to master
 - Check package existence before calling the final command
-- Add a friendly explanation of what pacw is doing before running the final command
 - Automate compiling with Make
 - Add compiling/instalation instructions

@@ -19,6 +19,10 @@ pub fn build(operation: &str, packages: Vec<String>, options: Options) -> Result
 
     match operation {
         "install" => {
+            final_command += "-S ";
+            final_command += packages.join(" ").as_str();
+        }
+        "upgrade" => {
             final_command += "-Syu ";
             final_command += packages.join(" ").as_str();
         }

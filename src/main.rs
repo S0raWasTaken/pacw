@@ -8,7 +8,7 @@ use std::vec::Vec;
 use macro_operations::orphans;
 use main_operations::{search, show};
 
-use crate::main_operations::{install, remove};
+use crate::main_operations::{install, upgrade, remove};
 
 pub struct Options {
     sudo: bool,
@@ -37,6 +37,7 @@ fn main() -> Result<(), String> {
     } else {
         match args[0].to_ascii_lowercase().as_str() {
             "install" | "i" => install(args),
+            "upgrade" | "u" => upgrade(args),
             "remove" | "r" => remove(args),
             "optdeps" | "od" => {
                 todo!()

@@ -1,24 +1,27 @@
 pub mod command_builder;
 pub mod macro_operations;
 pub mod main_operations;
+pub mod util;
 
 use std::env::args;
 use std::vec::Vec;
 
 use macro_operations::orphans;
-use main_operations::{search, show};
+use main_operations::{optdeps, search, show};
 
 use crate::main_operations::{install, upgrade, remove};
 
 pub struct Options {
     sudo: bool,
     colors: bool,
+    nobuild: bool,
 }
 impl Options {
     pub fn new() -> Self {
         Self {
             sudo: false,
             colors: true,
+            nobuild: false,
         }
     }
 }
@@ -39,9 +42,7 @@ fn main() -> Result<(), String> {
             "install" | "i" => install(args),
             "upgrade" | "u" => upgrade(args),
             "remove" | "r" => remove(args),
-            "optdeps" | "od" => {
-                todo!()
-            } // TODO: optional dependencies (main && macro)
+            "optdeps" | "od" => optdeps(args),
             "orphans" => {
                 let sys_orphans: Vec<String> = orphans()?
                     .iter()
@@ -61,7 +62,7 @@ fn main() -> Result<(), String> {
             "version" | "--version" | "-version" => {
                 println!("PACW v{}", env!("CARGO_PKG_VERSION"));
                 Ok(())
-            },
+            }
             _ => Err(String::from("Operation unknown")),
         }
     }

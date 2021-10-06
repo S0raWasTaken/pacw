@@ -17,7 +17,7 @@ pub fn upgrade(mut args: Vec<String>) -> Result<(), String> {
     options.colors = false;
     args.remove(0);
 
-    macro_handler("upgrade", args, options)
+    macro_handler("upgrade", args, options).map(|_| ())
 }
 pub fn remove(mut args: Vec<String>) -> Result<(), String> {
     let mut options: Options = Options::new();

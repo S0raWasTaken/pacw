@@ -10,6 +10,14 @@ pub fn install(mut args: Vec<String>) -> Result<(), String> {
 
     macro_handler("install", args, options)
 }
+pub fn upgrade(mut args: Vec<String>) -> Result<(), String> {
+    let mut options: Options = Options::new();
+    options.sudo = true;
+    options.colors = false;
+    args.remove(0);
+
+    macro_handler("upgrade", args, options)
+}
 pub fn remove(mut args: Vec<String>) -> Result<(), String> {
     let mut options: Options = Options::new();
     options.sudo = true;

@@ -27,14 +27,19 @@ sudo chmod +x /usr/local/bin/pacw
 ## Usage:
 
 > [] OPTIONAL, <> REQUIRED
+#### Installing stuff
+```bash
+pacw [install or i] <package> # -> same as "pacman -S"
+```
+
 #### Installing, updating and upgrading
 ```bash
-pacw install [package] # -> translates to "pacman -Syu"
+pacw [upgrade or u] [package] # -> same as "pacman -Syu"
 ```
 
 #### Printing package info
 ```bash
-pacw show <package> # -> same as "pacman -Si"
+pacw [show or info] <package> # -> same as "pacman -Si"
 ```
 
 #### Showing orphan packages
@@ -44,7 +49,7 @@ pacw orphans # -> same as "pacman -Qqdt"
 
 #### Removing packages
 ```bash
-pacw remove <package> # -> same as "pacman -Rs"
+pacw [remove or r] <package> # -> same as "pacman -Rs"
 ```
 
 #### Searching packages (not an AUR helper)
@@ -53,19 +58,15 @@ pacw search <package> # -> same as "pacman -Ss"
 ```
 
 #### Using macros
-> Note: this feature is still in development, so there's not many things to do yet<br/>
-
 Examples:
 ```bash
 pacw remove @orphans [additional packages] # -> same as "pacman -Rs $(pacman -Qqdt)"
 ```
 ```bash
-pacw install @optdeps [packages] # -> Will install packages with its optional dependencies
+pacw install @optdeps <packages> # -> Will install packages with its optional dependencies
 ```
 
 ## TODO:
 - Add support to doas (sudo alternative)
-- Merge to master
 - Check package existence before calling the final command
-- Automate compiling with Make
-- Add compiling/instalation instructions
+- 

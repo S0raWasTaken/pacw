@@ -54,12 +54,15 @@ pub fn optdeps(mut args: Vec<String>) -> Result<(), String> {
             .for_each(|dep| opt_deps.push(dep.to_owned()));
     }
 
-    Ok(println!("{:?}", opt_deps))
+    println!("{:#?}", opt_deps);
+    Ok(())
 }
 
-// TODO: main optdeps operation
-
-fn macro_handler(operation: &str, args: Vec<String>, options: Options) -> Result<Vec<String>, String> {
+fn macro_handler(
+    operation: &str,
+    args: Vec<String>,
+    options: Options,
+) -> Result<Vec<String>, String> {
     let mut packages: Vec<String> = vec![];
     for pack in &args {
         if pack.starts_with('@') {
@@ -73,7 +76,8 @@ fn macro_handler(operation: &str, args: Vec<String>, options: Options) -> Result
                 "@optdeps" => {
                     let mut opt = Options::new();
                     opt.nobuild = true;
-                    let fullcmd = args.join(" ")
+                    let fullcmd = args
+                        .join(" ")
                         .split_once("@optdeps")
                         .map(|x| String::from(x.1))
                         .iter()
@@ -82,9 +86,7 @@ fn macro_handler(operation: &str, args: Vec<String>, options: Options) -> Result
                         .as_str()
                         .trim()
                         .to_owned();
-                    let opt_args: Vec<String> = fullcmd.split(' ')
-                        .map(|x| String::from(x))
-                        .collect();
+                    let opt_args: Vec<String> = fullcmd.split(' ').map(String::from).collect();
                     let mut opt_deps: Vec<String> = vec![];
 
                     for package in &opt_args {

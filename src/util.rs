@@ -13,7 +13,7 @@ pub fn get_optdeps(package: String) -> Result<Vec<String>, String> {
     let optional_deps = String::from_utf8(child.stdout)
         .map_err(|_| String::from("uhhh, something went wrong here"))?
         .split("Optional Deps")
-        .map(|s| String::from(s))
+        .map(String::from)
         .collect::<Vec<String>>()[1]
         .as_str()
         .trim()
@@ -23,17 +23,13 @@ pub fn get_optdeps(package: String) -> Result<Vec<String>, String> {
         .collect::<Vec<&str>>()[0]
         .to_string()
         .split("Conflicts")
-        .map(|x| String::from(x))
+        .map(String::from)
         .collect::<Vec<String>>()[0]
         .as_str()
         .trim()
         .to_owned()
         .split('\n')
-        .map(|x| String::from(
-            x.trim()
-                .split(':')
-                .collect::<Vec<&str>>()[0]
-        ))
+        .map(|x| String::from(x.trim().split(':').collect::<Vec<&str>>()[0]))
         .collect::<Vec<String>>();
 
     Ok(optional_deps)

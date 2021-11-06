@@ -9,7 +9,7 @@ use std::vec::Vec;
 use macro_operations::orphans;
 use main_operations::{optdeps, search, show};
 
-use crate::main_operations::{install, upgrade, remove};
+use crate::main_operations::{install, remove, upgrade};
 
 pub struct Options {
     sudo: bool,
@@ -54,7 +54,7 @@ fn main() -> Result<(), String> {
                         }
                     })
                     .collect();
-                println!("{:?}", sys_orphans);
+                println!("{:#?}", sys_orphans);
                 Ok(())
             }
             "show" | "info" => show(args),
